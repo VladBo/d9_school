@@ -10,15 +10,30 @@
     },
     "repositories": [
         {
+            "type": "vcs",
+            "url": "https://github.com/vladbo/h5p.git"
+        },
+        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         }
+        
     ],
     "require": {
         "composer/installers": "^1.9",
+        "drupal/admin_toolbar": "^2.4",
+        "drupal/adminimal_admin_toolbar": "^1.11",
+        "drupal/adminimal_theme": "^1.6",
+        "drupal/bootstrap_barrio": "^5.1",
+        "drupal/bootstrap_styles": "^1.0",
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-project-message": "^9",
         "drupal/core-recommended": "^9",
+        "drupal/devel": "^4.1",
+        "drupal/h5p": "9999999-dev",
+        "drupal/layout_builder_blocks": "^1.0",
+        "drupal/page_manager": "^4.0@beta",
+        "drupal/radix": "^4.10",
         "drush/drush": "^10.2"
     },
     "conflict": {
@@ -61,26 +76,7 @@
                 "type:drupal-custom-theme"
             ]
         },
-        "drupal-core-project-message": {
-            "include-keys": [
-                "homepage",
-                "support"
-            ],
-            "post-create-project-cmd-message": [
-                "<bg=blue;fg=white>                                                         </>",
-                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
-                "<bg=blue;fg=white>  from the drupal/recommended-project template!          </>",
-                "<bg=blue;fg=white>                                                         </>",
-                "",
-                "<bg=yellow;fg=black>Next steps</>:",
-                "  * Install the site: https://www.drupal.org/docs/8/install",
-                "  * Read the user guide: https://www.drupal.org/docs/user_guide/en/index.html",
-                "  * Get support: https://www.drupal.org/support",
-                "  * Get involved with the Drupal community:",
-                "      https://www.drupal.org/getting-involved",
-                "  * Remove the plugin that prints this message:",
-                "      composer remove drupal/core-project-message"
-            ]
+        "patches": {
         }
     }
 }

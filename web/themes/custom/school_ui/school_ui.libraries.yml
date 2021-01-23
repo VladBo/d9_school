@@ -1,0 +1,10 @@
+style:
+  version: VERSION
+  css:
+    theme:
+      assets/css/school_ui.style.css: {}
+  js:
+    assets/js/school_ui.script.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
