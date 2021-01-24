@@ -17,11 +17,7 @@ jobs:
           debug: true
           script: |
             cd /var/www/html/d9_school
-            ls -lah
-            git checkout -f
-            git status
-            git pull
-            git status
+            git pull origin master
 
       # - name: Setup PHP
       #   uses: shivammathur/setup-php@v2
