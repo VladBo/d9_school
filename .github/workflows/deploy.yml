@@ -24,6 +24,7 @@ jobs:
             cd ${{ secrets.DOCROOT }}
             git checkout -f
             git pull
+            ls -lah vendor/bin
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
