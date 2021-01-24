@@ -24,10 +24,6 @@ jobs:
             cd ${{ secrets.DOCROOT }}
             git checkout -f
             git pull
-            vendor/bin/drush cr
-            vendor/bin/drush updb -y
-            vendor/bin/drush cim -y
-            vendor/bin/drush cr
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
