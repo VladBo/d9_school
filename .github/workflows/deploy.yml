@@ -1,9 +1,9 @@
 name: Deploy Drupal project
 
-# on: [workflow_dispatch]
 on:
   push:
     branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -22,9 +22,8 @@ jobs:
           debug: true
           script: |
             cd /var/www/html/d9_school
-            ls -lah
-            sudo git checkout -f
-            sudo git fetch
+            git checkout -f
+            git fetch
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
