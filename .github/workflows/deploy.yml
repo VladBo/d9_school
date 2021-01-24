@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - uses: actions/checkout@v2
+
       - name: Deploy to droplet using SSH
         uses: appleboy/ssh-action@master
         with:
@@ -17,29 +19,30 @@ jobs:
           debug: true
           script: |
             cd /var/www/html/d9_school
-            git pull origin master
+            git checkout -f
+            git pull
 
-      # - name: Setup PHP
-      #   uses: shivammathur/setup-php@v2
-      #   with:
-      #     php-version: "7.4"
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "7.4"
 
-      # - name: Cache Composer packages
-      #   id: composer-cache
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: vendor
-      #     key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-php-
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
 
-      # - name: Install composer dependencies
-      #   if: steps.composer-cache.outputs.cache-hit != 'true'
-      #   run: composer install --prefer-dist --no-progress
+      - name: Install composer dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install --prefer-dist --no-progress
 
-      # - uses: actions/setup-node@v1
-      #   with:
-      #     node-version: "14"
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14"
 
-      # - name: Install front-end dependencies
-      #   run: cd web/themes/custom/school_ui && npm install && npm run production
+      - name: Install front-end dependencies
+        run: cd web/themes/custom/school_ui && npm install && npm run production
