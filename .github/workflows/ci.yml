@@ -30,9 +30,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-php-
 
-      # - name: Install composer dependencies
-      #   run: composer install --prefer-dist --no-progress -vvv
-
       - name: Install composer dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer install --prefer-dist --no-progress
@@ -49,6 +46,11 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
       
       - name: Install composer dependencies
         run: composer install --prefer-dist --no-progress -vvv
