@@ -1,6 +1,9 @@
 name: Deploy Drupal project
 
-on: [workflow_dispatch]
+# on: [workflow_dispatch]
+on:
+  push:
+    branches: [ master ]
 
 jobs:
   deploy:
@@ -16,12 +19,12 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
-          # debug: true
-          # script: |
-          #   cd /var/www/html/d9_school
-          #   git checkout -f
-          #   git pull
-          script: cd ${{ secrets.DOCROOT }} && git pull
+          debug: true
+          script: |
+            cd /var/www/html/d9_school
+            ls -lah
+            git checkout -f
+            git fetch
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
