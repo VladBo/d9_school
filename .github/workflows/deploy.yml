@@ -16,11 +16,12 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
-          debug: true
-          script: |
-            cd /var/www/html/d9_school
-            git checkout -f
-            git pull
+          # debug: true
+          # script: |
+          #   cd /var/www/html/d9_school
+          #   git checkout -f
+          #   git pull
+          script: cd ${{ secrets.DOCROOT }} && git pull
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
