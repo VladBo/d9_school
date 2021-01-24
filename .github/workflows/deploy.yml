@@ -24,7 +24,6 @@ jobs:
             cd ${{ secrets.DOCROOT }}
             git checkout -f
             git pull
-            ls -lah vendor/bin
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -42,7 +41,7 @@ jobs:
 
       - name: Install composer dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer install --prefer-dist --no-progress
+        run: composer install --prefer-dist --no-progress && ls -lah vendor/bin
 
       # - name: Execute drush commands
       #   run: vendor/bin/drush cr && vendor/bin/drush updb -y && vendor/bin/drush cim -y && vendor/bin/drush cr
