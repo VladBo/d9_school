@@ -8,21 +8,21 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Deploy to droplet using SSH
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.PRIVATE_KEY }}
-        debug: true
-        script: |
-          cd ${{ secrets.DOCROOT }}
-          git pull
-
-    - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      - name: Deploy to droplet using SSH
+        uses: appleboy/ssh-action@master
         with:
-          php-version: "7.4"
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          debug: true
+          script: |
+            cd ${{ secrets.DOCROOT }}
+            git pull
+
+      - name: Setup PHP
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: "7.4"
 
       - name: Cache Composer packages
         id: composer-cache
