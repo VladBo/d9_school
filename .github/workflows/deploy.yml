@@ -1,0 +1,28 @@
+name: Deploy Drupal project to Digital Ocean droplet
+
+on:
+  push:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Deploy to droplet using SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        debug: true
+        script: |
+          cd ${{ secrets.DOCROOT }}
+          git pull
+          vendor/bin/drush cache:rebuild
+          vendor/bin/drush updatedb -y
+          vendor/bin/drush config:import -y
+          vendor/bin/drush cache:rebuild
