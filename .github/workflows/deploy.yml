@@ -23,8 +23,8 @@ jobs:
           script: |
             cd /var/www/html/d9_school
             ls -lah
-            git checkout -f
-            git fetch
+            sudo git checkout -f
+            sudo git fetch
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
