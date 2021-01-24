@@ -1,0 +1,54 @@
+name: Build & lint Drupal project
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      # - name: Install composer dependencies
+      #   run: composer install --prefer-dist --no-progress -vvv
+
+      - name: Install composer dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+
+      - name: Install front-end dependencies
+        run: cd web/themes/custom/school_ui && npm install && npm run production
+  lint:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Install composer dependencies
+        run: composer install --prefer-dist --no-progress -vvv
+      
+      - name: Run PHPCS with DrupalPractice on modules
+        uses: docker://hussainweb/drupalqa:php7.4
+        with:
+          args: phpcs --standard="Drupal,DrupalPractice" -n --extensions="php,module,install,theme" web/themes/custom/school_ui web/modules/custom --ignore=web/themes/*/dist/,web/themes/*/Gulpfile.js,web/themes/*/node_modules/
