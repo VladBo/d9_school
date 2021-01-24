@@ -48,7 +48,7 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Execute drush commands
-        run: cd ${{ secrets.DOCROOT }} && vendor/bin/drush cr && vendor/bin/drush updb -y && vendor/bin/drush cim -y && vendor/bin/drush cr
+        run: cd ${{ secrets.DOCROOT }} && ls -lah && vendor/bin/drush cr && vendor/bin/drush updb -y && vendor/bin/drush cim -y && vendor/bin/drush cr
 
       - uses: actions/setup-node@v1
         with:
