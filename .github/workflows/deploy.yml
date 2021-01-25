@@ -39,17 +39,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-php-
       - name: Install composer dependencies
-        # if: steps.composer-cache.outputs.cache-hit != 'true'
+        if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer install --prefer-dist --no-progress && ls -lah vendor/bin
 
-      - name: Execute drush commands1
-        run: ls -lah vendor/bin
-
-      - name: Execute drush commands2
-        run: ls -lah web
-
-      - name: Execute drush commands3
-        run: ls -lah web/sites/default
+      #- name: Execute drush commands3
+        #run: ls -lah web/sites/default
         # run: vendor/bin/drush cr && vendor/bin/drush updb -y && vendor/bin/drush cim -y && vendor/bin/drush cr
 
       - uses: actions/setup-node@v1
