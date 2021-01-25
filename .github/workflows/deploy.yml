@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      
+
       - uses: actions/checkout@v2
 
       - name: Deploy to droplet using SSH
@@ -21,9 +21,9 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            cd /var/www/d9_school
+            # cd /var/www/d9_school
             whoami
-            ls -lah
+            ls -lah /var/www/
             
       # - name: Setup PHP
       #   uses: shivammathur/setup-php@v2
