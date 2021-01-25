@@ -23,8 +23,9 @@ jobs:
           script: |
             cd ${{ secrets.DOCROOT }}
             ls -lah web/sites/default
-            git checkout -f
-            git pull
+            touch buu.txt
+            # git checkout -f
+            # git pull
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
