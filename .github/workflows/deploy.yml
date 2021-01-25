@@ -18,13 +18,12 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
+          target: /var/www/d9_school
           script: |
-            cd ${{ secrets.DOCROOT }}
-            ls -lah web/sites/default
+            whoami
+            ls -lah 
             touch buu.txt
-            # git checkout -f
-            # git pull
-
+            
       # - name: Setup PHP
       #   uses: shivammathur/setup-php@v2
       #   with:
