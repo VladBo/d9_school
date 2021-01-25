@@ -21,36 +21,33 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           debug: true
           script: |
-            cd /var/www
-            ls -lah
             cd ${{ secrets.DOCROOT }}
-            ls -lah
             git checkout -f
             git pull
 
-      # - name: Setup PHP
-      #   uses: shivammathur/setup-php@v2
-      #   with:
-      #     php-version: "7.4"
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "7.4"
 
-      # - name: Cache Composer packages
-      #   id: composer-cache
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: vendor
-      #     key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-php-
-      # - name: Install composer dependencies
-      #   # if: steps.composer-cache.outputs.cache-hit != 'true'
-      #   run: composer install --prefer-dist --no-progress && ls -lah vendor/bin
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+      - name: Install composer dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install --prefer-dist --no-progress && ls -lah vendor/bin
 
-      # # - name: Execute drush commands
-      # #   run: vendor/bin/drush cr && vendor/bin/drush updb -y && vendor/bin/drush cim -y && vendor/bin/drush cr
+      - name: Execute drush commands
+        run: vendor/bin/drush cr && vendor/bin/drush updb -y && vendor/bin/drush cim -y && vendor/bin/drush cr
 
-      # - uses: actions/setup-node@v1
-      #   with:
-      #     node-version: "14"
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14"
 
-      # - name: Install front-end dependencies
-      #   run: cd web/themes/custom/school_ui && npm install && npm run production
+      - name: Install front-end dependencies
+        run: cd web/themes/custom/school_ui && npm install && npm run production
