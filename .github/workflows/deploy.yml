@@ -18,11 +18,10 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
-          target: /var/www/d9_school
           script: |
+            cd /var/www/d9_school
             whoami
-            ls -lah 
-            touch buu.txt
+            ls -lah
             
       # - name: Setup PHP
       #   uses: shivammathur/setup-php@v2
