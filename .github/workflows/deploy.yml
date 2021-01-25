@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      
+      - uses: actions/checkout@v2
 
       - name: Deploy to droplet using SSH
         uses: appleboy/ssh-action@master
