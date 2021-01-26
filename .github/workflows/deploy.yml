@@ -11,8 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v2
-
+  
       - name: Deploy to droplet using SSH
         uses: appleboy/ssh-action@master
         with:
@@ -38,13 +37,13 @@ jobs:
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-php-
+
       - name: Install composer dependencies
-        if: #steps.composer-cache.outputs.cache-hit != 'true'
+        if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer install --prefer-dist --no-progress
 
-      #- name: Execute drush commands3
-        #run: ls -lah web/sites/default
-        # run: vendor/bin/drush cr && vendor/bin/drush updb -y && vendor/bin/drush cim -y && vendor/bin/drush cr
+      - name: Execute drush commands
+        run: vendor/bin/drush cr && vendor/bin/drush updb -y && vendor/bin/drush cim -y && vendor/bin/drush cr
 
       - uses: actions/setup-node@v1
         with:

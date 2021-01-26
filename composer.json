@@ -10,14 +10,23 @@
     },
     "repositories": [
         {
-            "type": "vcs",
-            "url": "https://github.com/vladbo/h5p.git"
-        },
-        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "vladbo/h5p",
+                "version": "master",
+                "type": "drupal-module",
+                "source": {
+                    "type": "git",
+                    "url": "git@github.com:vladbo/h5p.git",
+                    "reference": "master"
+                }
+            }
         }
-        
+
     ],
     "require": {
         "composer/installers": "^1.9",
@@ -26,15 +35,20 @@
         "drupal/adminimal_theme": "^1.6",
         "drupal/bootstrap_barrio": "^5.1",
         "drupal/bootstrap_styles": "^1.0",
-        "drupal/core-composer-scaffold": "^9",
-        "drupal/core-project-message": "^9",
-        "drupal/core-recommended": "^9",
-        "drupal/devel": "^4.1",
-        "drupal/h5p": "9999999-dev",
+        "drupal/core-composer-scaffold": "^9.0",
+        "drupal/core-project-message": "^9.0",
+        "drupal/core-recommended": "^9.0",
         "drupal/layout_builder_blocks": "^1.0",
         "drupal/page_manager": "^4.0@beta",
         "drupal/radix": "^4.10",
-        "drush/drush": "^10.2"
+        "drush/drush": "^10.2",
+        "vladbo/h5p": "master",
+        "vlucas/phpdotenv": "^5.3"
+    },
+    "require-dev": {
+        "drupal/core-dev": "^9.0",
+        "drupal/devel": "^4.1",
+        "zaporylie/composer-drupal-optimizations": "^1.2"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -42,7 +56,28 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
+        "discard-changes": true,
         "sort-packages": true
+    },
+    "autoload": {
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ],
+        "files": ["load.environment.php"]
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ]
     },
     "extra": {
         "drupal-scaffold": {
@@ -51,30 +86,18 @@
             }
         },
         "installer-paths": {
-            "web/core": [
-                "type:drupal-core"
-            ],
-            "web/libraries/{$name}": [
-                "type:drupal-library"
-            ],
-            "web/modules/contrib/{$name}": [
-                "type:drupal-module"
-            ],
-            "web/profiles/contrib/{$name}": [
-                "type:drupal-profile"
-            ],
-            "web/themes/contrib/{$name}": [
-                "type:drupal-theme"
-            ],
-            "drush/Commands/contrib/{$name}": [
-                "type:drupal-drush"
-            ],
-            "web/modules/custom/{$name}": [
-                "type:drupal-custom-module"
-            ],
-            "web/themes/custom/{$name}": [
-                "type:drupal-custom-theme"
-            ]
+            "web/core": ["type:drupal-core"],
+            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/modules/contrib/{$name}": ["type:drupal-module"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "web/themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
+            "web/modules/custom/{$name}": ["type:drupal-custom-module"],
+            "web/themes/custom/{$name}": ["type:drupal-custom-theme"]
+        },
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
         },
         "patches": {
         }

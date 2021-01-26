@@ -1,0 +1,20 @@
+uuid: 9c6d2363-fb34-4786-a39d-ef118a86c44a
+langcode: en
+status: true
+dependencies:
+  theme:
+    - school_ui
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: school_ui_local_actions
+theme: school_ui
+region: content
+weight: -20
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

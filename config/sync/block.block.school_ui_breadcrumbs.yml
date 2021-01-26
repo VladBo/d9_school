@@ -1,0 +1,22 @@
+uuid: 4630c3c0-1844-444f-af69-c93a35b78e2c
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - school_ui
+_core:
+  default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
+id: school_ui_breadcrumbs
+theme: school_ui
+region: navbar_right
+weight: -4
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }
