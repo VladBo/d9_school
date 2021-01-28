@@ -33,17 +33,21 @@
         "drupal/admin_toolbar": "^2.4",
         "drupal/adminimal_admin_toolbar": "^1.11",
         "drupal/adminimal_theme": "^1.6",
+        "drupal/block_list_override": "^1.0",
         "drupal/bootstrap_barrio": "^5.1",
+        "drupal/bootstrap_layout_builder": "^2.0",
         "drupal/bootstrap_styles": "^1.0",
         "drupal/core-composer-scaffold": "^9.0",
         "drupal/core-project-message": "^9.0",
         "drupal/core-recommended": "^9.0",
         "drupal/layout_builder_blocks": "^1.0",
+        "drupal/layout_builder_restrictions": "^2.8",
         "drupal/page_manager": "^4.0@beta",
         "drupal/radix": "^4.10",
         "drush/drush": "^10.2",
         "vladbo/h5p": "master",
-        "vlucas/phpdotenv": "^5.3"
+        "vlucas/phpdotenv": "^5.3",
+        "webflo/drupal-finder": "^1.2"
     },
     "require-dev": {
         "drupal/core-dev": "^9.0",
