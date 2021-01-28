@@ -1,5 +1,5 @@
 {
-    "name": "drupal/recommended-project",
+    "name": "drupal-composer/drupal-project",
     "description": "Project template for Drupal 8 projects with a relocated document root",
     "type": "project",
     "license": "GPL-2.0-or-later",
@@ -44,7 +44,7 @@
         "drupal/layout_builder_restrictions": "^2.8",
         "drupal/page_manager": "^4.0@beta",
         "drupal/radix": "^4.10",
-        "drush/drush": "^10.2",
+        "drush/drush": "^10.3",
         "vladbo/h5p": "master",
         "vlucas/phpdotenv": "^5.3",
         "webflo/drupal-finder": "^1.2"
