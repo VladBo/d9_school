@@ -1,4 +1,4 @@
-uuid: 6a122457-3213-488e-8fb9-bd665180d7a8
+uuid: 3c397cce-9da8-4664-ba96-087248a1562e
 langcode: en
 status: true
 dependencies:
@@ -6,14 +6,12 @@ dependencies:
     - core.entity_view_display.comment.comment.default
     - field.field.node.article.body
     - field.field.node.article.comment
-    - field.field.node.article.field_h5p
     - field.field.node.article.field_image
     - field.field.node.article.field_tags
     - image.style.large
     - node.type.article
   module:
     - comment
-    - h5p
     - image
     - text
     - user
@@ -40,13 +38,6 @@ content:
       view_mode: default
       pager_id: 0
     third_party_settings: {  }
-  field_h5p:
-    weight: 111
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: h5p_default
-    region: content
   field_image:
     type: image
     weight: -1

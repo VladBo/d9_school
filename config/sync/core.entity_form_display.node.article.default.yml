@@ -1,18 +1,16 @@
-uuid: bda3d2f4-d0f9-44c9-a9df-ee435c289088
+uuid: dfd5a96f-f650-45e6-a549-1dd24c90f757
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.node.article.body
     - field.field.node.article.comment
-    - field.field.node.article.field_h5p
     - field.field.node.article.field_image
     - field.field.node.article.field_tags
     - image.style.thumbnail
     - node.type.article
   module:
     - comment
-    - h5peditor
     - image
     - path
     - text
@@ -45,12 +43,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_h5p:
-    weight: 121
-    settings: {  }
-    third_party_settings: {  }
-    type: h5p_editor
-    region: content
   field_image:
     type: image_image
     weight: 4
