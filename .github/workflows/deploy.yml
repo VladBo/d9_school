@@ -43,9 +43,9 @@ jobs:
 
       - name: Execute drush commands
         run: vendor/bin/drush cr && vendor/bin/drush updb -y && vendor/bin/drush cim -y && vendor/bin/drush cr
-      # - uses: actions/setup-node@v1
-        # with:
-          # node-version: "14"
 
-      # - name: Install front-end dependencies
-        # run: cd web/themes/custom/school_ui && npm install && npm run production
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+      - name: Install front-end dependencies
+        run: cd web/themes/custom/school_ui && npm install && npm run production
